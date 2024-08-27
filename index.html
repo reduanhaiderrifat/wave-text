@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="content">
+        <h2 class="static-text">water</h2>
+        <h2 class="wave-text">water</h2>
+        <h2 class="static-text">water</h2>
+    </div>
+    <script>
+const waveText = document.querySelector('.wave-text');
+
+let waveAmplitude = 10; // Height of the wave
+let waveFrequency = 0.05; // Number of waves per unit
+let waveOffset = 0; // Starting point of the wave
+
+function animateWave() {
+    let clipPath = 'polygon(';
+
+    // Generate clip-path points
+    for (let i = 0; i <= 100; i += 5) {
+        let waveHeight = Math.sin((i * waveFrequency) + waveOffset) * waveAmplitude;
+        clipPath += `${i}% ${50 + waveHeight}%, `;
+    }
+
+    // Close the polygon
+    clipPath += '100% 100%, 0% 100%)';
+    waveText.style.clipPath = clipPath;
+
+    waveOffset += 0.1; // Adjust the wave speed
+    requestAnimationFrame(animateWave); // Keep the animation running
+}
+
+animateWave(); // Start the wave animation
+
+
+    </script>
+</body>
+</html>
